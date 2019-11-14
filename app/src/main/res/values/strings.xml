@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">LightOfAndroidAdvanced</string>
+    <string name="et_login__pwd_hint">请输入密码</string>
+    <string name="et_login_name_hint">请输入手机号</string>
+    <string name="bt_login">登录</string>
 </resources>

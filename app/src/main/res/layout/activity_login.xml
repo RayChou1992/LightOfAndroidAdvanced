@@ -12,7 +12,10 @@
             android:id="@+id/et_login_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入用户名" />
+            android:importantForAutofill="auto"
+            android:hint="@string/et_login_name_hint"
+            android:inputType="text"
+            android:autofillHints="17623629441" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -24,7 +27,9 @@
             android:id="@+id/et_login_pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入密码" />
+            android:hint="@string/et_login__pwd_hint"
+            android:importantForAutofill="no"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -33,6 +38,6 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="登录"/>
+        android:text="@string/bt_login"/>
 
 </LinearLayout>
