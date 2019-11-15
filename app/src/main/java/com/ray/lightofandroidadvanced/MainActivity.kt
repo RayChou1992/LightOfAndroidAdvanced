@@ -72,10 +72,13 @@ class MainActivity : AppCompatActivity() {
 //            tab.text = it
 //            home_tl.addTab(tab)
             home_tl.addTab(home_tl.newTab().setText(it))
-            fragments.add(ListFragment())
+            fragments.add(MyListFragment())
         }
 
-
+        var adapter=MyFragmentAdapter(supportFragmentManager,fragments,titles)
+        home_vp.adapter=adapter
+//        home_tl.setupWithViewPager(home_vp)
+//        home_tl.setTabsFromPagerAdapter(adapter)
 
 
     }
