@@ -1,6 +1,9 @@
 package com.ray.lightofandroidadvanced
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.ListFragment
@@ -14,9 +17,43 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initTitle()
         initViewPager()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar,menu)
+        return true
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.first->Toast.makeText(this,"first",Toast.LENGTH_SHORT).show()
+            R.id.second->Toast.makeText(this,"second",Toast.LENGTH_SHORT).show()
+            R.id.third->Toast.makeText(this,"third",Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    /**
+     * 初始化
+     */
+    private fun initTitle() {
+        setSupportActionBar(home_toolbar)
+        home_nv.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.first->Toast.makeText(this,"first",Toast.LENGTH_SHORT).show()
+                R.id.second->Toast.makeText(this,"second",Toast.LENGTH_SHORT).show()
+                R.id.third->Toast.makeText(this,"third",Toast.LENGTH_SHORT).show()
+            }
+            return@setNavigationItemSelectedListener true
+        }
+    }
+
+    /**
+     * 初始化ViewPager
+     */
     private fun initViewPager() {
         titles.add("精选")
         titles.add("体育")
@@ -31,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         titles.add("搞笑")
 
         titles.forEach {
-            //            val tab = home_tl.newTab()
+//            val tab = home_tl.newTab()
 //            tab.text = it
 //            home_tl.addTab(tab)
             home_tl.addTab(home_tl.newTab().setText(it))

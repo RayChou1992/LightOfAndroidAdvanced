@@ -3,4 +3,6 @@
     <string name="et_login__pwd_hint">请输入密码</string>
     <string name="et_login_name_hint">请输入手机号</string>
     <string name="bt_login">登录</string>
+    <string name="user_icon">user_icon</string>
+    <string name="username">username</string>
 </resources>

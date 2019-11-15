@@ -15,6 +15,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
         //TODO 使用AutoFill来自动填充
-        et_login_name.setAutofillHints(View.AUTOFILL_HINT_PHONE)
+//        et_login_name.setAutofillHints(View.AUTOFILL_HINT_PHONE)
     }
 }
