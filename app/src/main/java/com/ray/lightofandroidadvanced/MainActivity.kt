@@ -77,8 +77,8 @@ class MainActivity : AppCompatActivity() {
 
         var adapter=MyFragmentAdapter(supportFragmentManager,fragments,titles)
         home_vp.adapter=adapter
-//        home_tl.setupWithViewPager(home_vp)
-//        home_tl.setTabsFromPagerAdapter(adapter)
+        home_tl.setupWithViewPager(home_vp)
+        home_tl.setTabsFromPagerAdapter(adapter)
 
 
     }
