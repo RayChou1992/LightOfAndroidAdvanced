@@ -1,12 +1,16 @@
 package com.ray.lightofandroidadvanced
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Message
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.FragmentStatePagerAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,16 +26,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar,menu)
+        menuInflater.inflate(R.menu.toolbar, menu)
         return true
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.first->Toast.makeText(this,"first",Toast.LENGTH_SHORT).show()
-            R.id.second->Toast.makeText(this,"second",Toast.LENGTH_SHORT).show()
-            R.id.third->Toast.makeText(this,"third",Toast.LENGTH_SHORT).show()
+        when (item.itemId) {
+            R.id.first -> Toast.makeText(this, "first", Toast.LENGTH_SHORT).show()
+            R.id.second -> Toast.makeText(this, "second", Toast.LENGTH_SHORT).show()
+            R.id.third -> Toast.makeText(this, "third", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -42,10 +46,10 @@ class MainActivity : AppCompatActivity() {
     private fun initTitle() {
         setSupportActionBar(home_toolbar)
         home_nv.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.first->Toast.makeText(this,"first",Toast.LENGTH_SHORT).show()
-                R.id.second->Toast.makeText(this,"second",Toast.LENGTH_SHORT).show()
-                R.id.third->Toast.makeText(this,"third",Toast.LENGTH_SHORT).show()
+            when (it.itemId) {
+                R.id.first -> Toast.makeText(this, "first", Toast.LENGTH_SHORT).show()
+                R.id.second -> Toast.makeText(this, "second", Toast.LENGTH_SHORT).show()
+                R.id.third -> startActivity(Intent(this, MessageActivity::class.java))
             }
             return@setNavigationItemSelectedListener true
         }
@@ -67,19 +71,37 @@ class MainActivity : AppCompatActivity() {
         titles.add("动漫")
         titles.add("搞笑")
 
-        titles.forEach {
-//            val tab = home_tl.newTab()
-//            tab.text = it
-//            home_tl.addTab(tab)
-            home_tl.addTab(home_tl.newTab().setText(it))
-            fragments.add(MyListFragment())
+        repeat(titles.size) {
+            fragments.add(MyListFragment(it))
         }
 
-        var adapter=MyFragmentAdapter(supportFragmentManager,fragments,titles)
-        home_vp.adapter=adapter
+        val adapter = MyFragmentAdapter(
+            supportFragmentManager,
+            fragments,
+            titles,
+            FragmentStatePagerAdapter.BEHAVIOR_SET_USER_VISIBLE_HINT
+        )
+        home_vp.adapter = adapter
+        home_vp.offscreenPageLimit = 1
+
         home_tl.setupWithViewPager(home_vp)
-        home_tl.setTabsFromPagerAdapter(adapter)
 
 
+
+
+        home_tl.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(p0: TabLayout.Tab?) {
+                Toast.makeText(this@MainActivity, "${p0!!.position}####", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+        home_vp.currentItem = 3
+//        home_tl.getTabAt(3)!!.select()
     }
 }

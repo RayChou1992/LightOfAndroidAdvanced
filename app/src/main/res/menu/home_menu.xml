@@ -13,7 +13,7 @@
     app:showAsAction="ifRoom" />
 <item
     android:id="@+id/third"
-    android:icon="@mipmap/ic_launcher"
+    android:icon="@mipmap/message"
     android:title="third"
     app:showAsAction="always" />
 </menu>
